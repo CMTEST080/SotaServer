@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Sota Socket</title>
+  <script type="text/javascript" src="script.js"></script>
+  <style>
+    body {
+      -webkit-text-size-adjust: 100%;
+      -moz-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+      -o-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+    #itemList li:nth-child(n - 5) {
+      opacity: 0.5;
+    }
+    #itemList li:nth-child(n + 5) {
+      display: none;
+    }
+    #itemList li:nth-child(1) {
+      font-weight: bold;
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <h1>Sota Socket</h1>
+  <p>connection status: <span id="connectionStatus"></span></p>
+  <div id="messageBox">
+    <form id="createMessage">
+      <fieldset>
+        <legend>Create Message</legend>
+        <br>
+        <label for="action">Action: </label>
+        <select name="action">
+          <option value="manual">manual</option>
+          <option value="index">index</option>
+        </select>
+        <br>
+        <div id="messageData">
+        Data:
+          <div id="defautlItem" class="keyValueItem">
+            <input name="data[key][]" type="hidden" placeholder="input data key" value="1" />
+            <input name="data[val][]" type="number" placeholder="input data value" />
+            <label for="data[val][]"> :Body</label>
+          </div>
+          <div class="keyValueItem">
+            <input name="data[key][]" type="hidden" placeholder="input data key" value="2" />
+            <input name="data[val][]" type="number" placeholder="input data value" />
+            <label for="data[val][]"> :Left shoulder</label>
+          </div>
+          <div class="keyValueItem">
+            <input name="data[key][]" type="hidden" placeholder="input data key" value="3" />
+            <input name="data[val][]" type="number" placeholder="input data value" />
+            <label for="data[val][]"> :Left elbow</label>
+          </div>
+          <div class="keyValueItem">
+            <input name="data[key][]" type="hidden" placeholder="input data key" value="4" />
+            <input name="data[val][]" type="number" placeholder="input data value" />
+            <label for="data[val][]"> :Right shoulder</label>
+          </div>
+          <div class="keyValueItem">
+            <input name="data[key][]" type="hidden" placeholder="input data key" value="5" />
+            <input name="data[val][]" type="number" placeholder="input data value" />
+            <label for="data[val][]"> :Right elbow</label>
+          </div>
+          <div class="keyValueItem">
+            <input name="data[key][]" type="hidden" placeholder="input data key" value="6" />
+            <input name="data[val][]" type="number" placeholder="input data value" />
+            <label for="data[val][]"> :Head yaw</label>
+          </div>
+          <div class="keyValueItem">
+            <input name="data[key][]" type="hidden" placeholder="input data key" value="7" />
+            <input name="data[val][]" type="number" placeholder="input data value" />
+            <label for="data[val][]"> :Head pitch</label>
+          </div>
+          <div class="keyValueItem">
+            <input name="data[key][]" type="hidden" placeholder="input data key" value="8" />
+            <input name="data[val][]" type="number" placeholder="input data value" />
+            <label for="data[val][]"> :Head roll</label>
+          </div>
+        </div>
+        <button id="submitMessage">submit</button>
+      </fieldset>
+    </form>
+    <div id="messageBoard">
+      <ul id="itemList">
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
