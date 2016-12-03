@@ -1,5 +1,6 @@
 *.class
 *.jar
+!lib/sotalib.jar
 
 .project
 .classpath

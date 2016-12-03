@@ -12,15 +12,10 @@
       -o-text-size-adjust: 100%;
       text-size-adjust: 100%;
     }
-    #itemList li:nth-child(n - 5) {
-      opacity: 0.5;
-    }
-    #itemList li:nth-child(n + 5) {
-      display: none;
-    }
-    #itemList li:nth-child(1) {
-      font-weight: bold;
-      opacity: 1;
+    #submitMessage {
+      height: 2rem;
+      width: 100%;
+      margin-top: 1rem;
     }
   </style>
 </head>
@@ -31,14 +26,16 @@
     <form id="createMessage">
       <fieldset>
         <legend>Create Message</legend>
-        <br>
         <label for="action">Action: </label>
         <select name="action">
-          <option value="manual">manual</option>
+          <option value="">--</option>
           <option value="index">index</option>
+          <option value="kangFu">kangFu</option>
+          <option value="banzai">banzai</option>
+          <option value="manual">manual</option>
         </select>
         <br>
-        <div id="messageData">
+        <div id="messageData" style="display: none">
         Data:
           <div id="defautlItem" class="keyValueItem">
             <input name="data[key][]" type="hidden" placeholder="input data key" value="1" />
@@ -85,8 +82,8 @@
       </fieldset>
     </form>
     <div id="messageBoard">
-      <ul id="itemList">
-      </ul>
+      <div id="itemList">
+      </div>
     </div>
   </div>
 </body>

@@ -43,10 +43,13 @@ MessageBox = {
   'setUpMessageBox': function() {
     var sendMessage = document.getElementById('submitMessage');
     sendMessage.addEventListener('click', MessageBox.submitMessage);
+    var selectBox = document.querySelector('select[name="action"]');
+    selectBox.addEventListener('change', MessageBox.changeAction);
   },
   'submitMessage': function(e) {
     e.preventDefault();
     var action = document.querySelector('select[name="action"]').value;
+    if(!action) return;
     var keys   = document.querySelectorAll('input[name="data[key][]"]');
     var vals   = document.querySelectorAll('input[name="data[val][]"]');
     var data   = {};
@@ -60,12 +63,35 @@ MessageBox = {
     };
     var jsonString = JSON.stringify(message);
     webSocket.send(jsonString);
-    MessageBox.displayMessage(jsonString, null, 2);
+  },
+  'changeAction': function(e) {
+    var action = e.target.value;
+    var vals = document.querySelectorAll('input[name="data[val][]"]');
+    switch(action) {
+      case 'index':
+        [0, 0, -800, 0, 800, 0, 50, 0].map(function(v, i) { vals[i].value = v;});
+        break;
+      case 'kangFu':
+        [500, 300, -300, 500, 500, -300, 0, 300].map(function(v, i) { vals[i].value = v;});
+        break;
+      case 'banzai':
+        [0, 500, -100, -500, 100, 0, -200, 0].map(function(v, i) { vals[i].value = v;});
+        break;
+      default:
+        [0, 0, 0, 0, 0, 0, 0, 0].map(function(v, i) { vals[i].value = v;});
+    }
+    var dataFields = document.getElementById('messageData');
+    if (action != 'manual') {
+     dataFields.style.display = 'none';
+     return;
+    }
+    dataFields.style.display = '';
+
   },
   'displayMessage': function(message) {
     var itemList = document.getElementById('itemList');
-    var item = document.createElement('li');
-    item.innerText = message;
+    var item = document.createElement('div');
+    item.innerText = message.action;
     itemList.insertBefore(item, itemList.childNodes[0]);
   },
 }

@@ -22,7 +22,6 @@ public class RobotAPI {
     boolean properlySetUp = setUpRobot();
     if (!properlySetUp) return;
 
-    sparkling = false;
     Controller controller = new MotionController();
     controller.executeAction(json.action, json.data);
   }

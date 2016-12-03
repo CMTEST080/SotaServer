@@ -33,10 +33,10 @@ public class MotionController implements Controller {
         RobotAPI.motion.LockServoHandle(SV_ALL);
         switch (action) {
         case "manual":
-          manual(data);
+          setServo(data, true);
           break;
         default:
-          index();
+          setServo(data, false);
           break;
         }
         RobotAPI.motion.UnLockServoHandle();
@@ -46,7 +46,7 @@ public class MotionController implements Controller {
     thread.run();
   }
 
-  private void manual(Map<String, String> data) {
+  private void setServo(Map<String, String> data, boolean limit) {
     List<Byte> idsList = new ArrayList<Byte>();
     List<Short> posList = new ArrayList<Short>();
 
@@ -73,7 +73,11 @@ public class MotionController implements Controller {
       case SV_HEAD_P:
       case SV_HEAD_R:
         idsList.add(key);
-        posList.add(limitAngle(key, val));
+        if(limit) {
+          posList.add(limitAngle(key, val));
+        } else {
+          posList.add(val);
+        }
         break;
       }
     }
@@ -123,12 +127,5 @@ public class MotionController implements Controller {
         break;
     }
     return val;
-  }
-
-  private void index() {
-    pose = new CRobotPose();
-    pose.SetPose(SV_ALL, new Short[] { 0, 0, -1000, 0, 1000, 0, 50, 0 });
-    RobotAPI.motion.play(pose, 1000);
-    CRobotUtil.wait(1000);
   }
 }

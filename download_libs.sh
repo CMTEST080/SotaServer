@@ -1,5 +1,5 @@
 # ライブラリのjarのダウンロード、存在する場合はスキップ
-jars=(SRClientHelper.jar core-2.2.jar javase-2.2.jar jna-4.1.0.jar opencv-310.jar sotalib.jar)
+jars=(SRClientHelper.jar core-2.2.jar javase-2.2.jar jna-4.1.0.jar opencv-310.jar)
 download_count=0
 for jar in ${jars[@]}; do
   if [ ! -e lib/${jar} ]; then
